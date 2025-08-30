@@ -1,4 +1,5 @@
 {
   "port": 8080,
-  "threadPoolSize": 20
+  "threadPoolSize": 20,
+  "controllerPackage": "com.codesmith.httpserver.controller"
 }

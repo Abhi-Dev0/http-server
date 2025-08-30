@@ -83,8 +83,8 @@ public class RequestParser {
 
     private void parseHeaders(BufferedReader reader, HttpRequest request){
         try{
-            StringBuilder line;
-            while(!(line = new StringBuilder(reader.readLine())).isEmpty()){
+            String line;
+            while((line = reader.readLine()) != null && !line.isBlank()){
                 int colonIndex = line.indexOf(":");
                 if(colonIndex == -1)
                     throw new HttpRequestParsingException("Malformed HTTP Header Line "+line);
