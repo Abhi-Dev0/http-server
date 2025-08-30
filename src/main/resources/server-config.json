@@ -1,6 +1,6 @@
 {
   "port": 8080,
-  "threadPoolSize": 20,
+  "threadPoolSize": 50,
   "controllerPackage": "com.codesmith.httpserver.controller",
   "webroot": "src/main/resources/webroot"
 }

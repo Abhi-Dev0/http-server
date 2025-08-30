@@ -12,6 +12,7 @@ public class ResponseWriter {
     public static void write(OutputStream out, HttpResponse response) throws IOException {
 
         byte[] body = response.getBody() != null ? response.getBody().getBytes() : null;
+        response.addHeader("Connection", "close");
 
         if(body != null)
             response.addHeader("Content-Length", String.valueOf(body.length));
