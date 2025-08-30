@@ -30,7 +30,7 @@ public class SocketHandler implements Runnable{
             logger.info("Started Server at port: {}", this.port);
             while(serverSocket.isBound() && !serverSocket.isClosed()){
                 Socket socket = serverSocket.accept();
-                executorService.execute(new RequestHandler(socket, router));
+                executorService.execute(new RequestHandler(socket, router) );
             }
         } catch (IOException e) {
             logger.error("Exception occurred while starting server at port: {}", this.port, e);

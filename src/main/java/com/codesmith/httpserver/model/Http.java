@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Http {
 
+    private HttpVersion httpVersion;
     private String body;
     private final Map<String, String> headers = new HashMap<>();
 
@@ -22,5 +23,13 @@ public class Http {
 
     public void addHeader(String header, String value) {
         this.headers.put(header, value);
+    }
+
+    public HttpVersion getHttpVersion() {
+        return this.httpVersion;
+    }
+
+    public void setHttpVersion(HttpVersion httpVersion) {
+        this.httpVersion = httpVersion;
     }
 }

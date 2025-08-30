@@ -3,7 +3,7 @@ package com.codesmith.httpserver.model;
 import com.codesmith.httpserver.exception.UnSupportedHttpMethodException;
 
 public enum HttpMethod {
-    GET, POST;
+    GET, POST, OPTIONS;
 
     public static HttpMethod getHttpMethod(String method){
         try {

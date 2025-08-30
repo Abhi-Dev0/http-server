@@ -1,5 +1,6 @@
 package com.codesmith.httpserver.route;
 
+import com.codesmith.httpserver.handler.RouteHandler;
 import com.codesmith.httpserver.model.HttpMethod;
 
 import java.util.*;

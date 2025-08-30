@@ -2,6 +2,7 @@ package com.codesmith.httpserver;
 
 import com.codesmith.httpserver.config.ConfigManager;
 import com.codesmith.httpserver.config.ServerConfig;
+import com.codesmith.httpserver.handler.HtmlHandler;
 import com.codesmith.httpserver.handler.SocketHandler;
 import com.codesmith.httpserver.exception.ConfigurationException;
 import com.codesmith.httpserver.route.RouteScanner;
@@ -28,6 +29,11 @@ public class HttpServer {
             Router.Builder routerBuilder = new Router.Builder();
             RouteScanner.scan(config.getControllerPackage(), routerBuilder);
             Router router = routerBuilder.build();
+            logger.info("Scanning Controllers from package: {} Completed", config.getControllerPackage());
+
+            logger.info("Setting up webroot: {}", config.getWebroot());
+            HtmlHandler htmlHandler = HtmlHandler.getInstance();
+            htmlHandler.setWebrootPath(config.getWebroot());
 
             logger.info("Starting Server at port: {}", config.getPort());
 

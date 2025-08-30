@@ -8,6 +8,8 @@ public class ServerConfig {
 
     private String controllerPackage;
 
+    private String webroot;
+
     public int getPort() {
         return port;
     }
@@ -30,5 +32,13 @@ public class ServerConfig {
 
     public void setControllerPackage(String controllerPackage) {
         this.controllerPackage = controllerPackage;
+    }
+
+    public String getWebroot() {
+        return webroot;
+    }
+
+    public void setWebroot(String webroot) {
+        this.webroot = webroot;
     }
 }

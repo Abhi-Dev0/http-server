@@ -16,6 +16,10 @@ public enum HttpVersion {
         this.minor = minor;
     }
 
+    public String getHttpVersion(){
+        return this.httpVersion;
+    }
+
     public static HttpVersion getCompatibleHttpVersion(String httpVersion, int major, int minor){
         for(HttpVersion version : HttpVersion.values()){
             if(httpVersion.equals(version.httpVersion))

@@ -5,7 +5,6 @@ import com.codesmith.httpserver.model.HttpMethod;
 import com.codesmith.httpserver.model.HttpRequest;
 import com.codesmith.httpserver.model.HttpVersion;
 
-import javax.xml.stream.events.Characters;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,10 +16,6 @@ import java.util.regex.Pattern;
 public class RequestParser {
 
     private static RequestParser requestParser;
-
-    private static final int SP = 0x1A; //32 Octet
-    private static final int CR = 0x0B; //13 Octet
-    private static final int LF = 0x08; //10 Octet
 
     private static final Pattern httpVersionPattern = Pattern.compile("HTTP/(?<major>\\d+)\\.(?<minor>\\d+)");
 
@@ -46,6 +41,11 @@ public class RequestParser {
 
         //Parse Body
         parseBody(bufferedReader, request);
+
+        // Default to OPTIONS method if none parsed
+        if(request.getMethod() == null){
+            request.setMethod(HttpMethod.OPTIONS);
+        }
 
         return request;
     }

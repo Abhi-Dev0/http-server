@@ -12,4 +12,5 @@ import java.lang.annotation.Target;
 public @interface Route {
     String path();
     HttpMethod httpMethod();
+    String produces() default "application/json";
 }

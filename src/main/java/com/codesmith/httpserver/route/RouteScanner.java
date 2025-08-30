@@ -1,7 +1,7 @@
 package com.codesmith.httpserver.route;
 
+import com.codesmith.httpserver.handler.RouteHandler;
 import com.codesmith.httpserver.model.HttpRequest;
-import com.codesmith.httpserver.model.HttpResponse;
 import com.codesmith.httpserver.route.annotation.Controller;
 import com.codesmith.httpserver.route.annotation.Route;
 import org.reflections.Reflections;
@@ -32,21 +32,10 @@ public class RouteScanner {
                     // Validate method signature
                     if(method.getParameterCount() != 1 || !method.getParameterTypes()[0].equals(HttpRequest.class))
                         throw new IllegalArgumentException("Method " + method.getName() + " in controller " + controller.getName() + " must have exactly one parameter of type HttpRequest");
-                    if(!method.getReturnType().equals(HttpResponse.class))
-                        throw new IllegalArgumentException("Method " + method.getName() + " in controller " + controller.getName() + " must return HttpResponse");
-
                     Route route = method.getAnnotation(Route.class);
 
                     // Register the route in the router builder
-                    routerBuilder.addRoute(route.path(), route.httpMethod(), request -> {
-                        try{
-
-                            // Invoke the method on the controller instance by passing the HttpRequest
-                            return (HttpResponse) method.invoke(controllerInstance, request);
-                        }catch (Exception e){
-                            throw new RuntimeException("Failed to invoke route handler method: " + method.getName() + " in controller: " + controller.getName(), e);
-                        }
-                    });
+                    routerBuilder.addRoute(route.path(), route.httpMethod(),new RouteHandler(controllerInstance, method, route));
                 }
             } catch (Exception e) {
                 throw new RuntimeException("Failed to instantiate controller: " + controller.getName(), e);

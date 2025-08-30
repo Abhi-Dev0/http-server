@@ -4,7 +4,7 @@ public class HttpRequest extends Http{
 
     private HttpMethod method;
     private String targetUri;
-    private HttpVersion httpVersion;
+
 
     public HttpRequest() { }
 
@@ -22,13 +22,5 @@ public class HttpRequest extends Http{
 
     public void setTargetUri(String targetUri) {
         this.targetUri = targetUri;
-    }
-
-    public HttpVersion getHttpVersion() {
-        return httpVersion;
-    }
-
-    public void setHttpVersion(HttpVersion httpVersion) {
-        this.httpVersion = httpVersion;
     }
 }
